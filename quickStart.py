@@ -9,7 +9,7 @@ from src.train.model import OminiModelFIll
 from safetensors.torch import load_file
 
 config_path = "train/config/word_512_size.yaml"
-lora_path = "/home/sxm/data02Space/FluxText/FLUX-Text/model_multisize/pytorch_lora_weights.safetensors"
+lora_path = "./FLUX-Text/model_multisize/pytorch_lora_weights.safetensors"
 with open(config_path, "r") as f:
     config = yaml.safe_load(f)
 model = OminiModelFIll(
