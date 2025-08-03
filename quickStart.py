@@ -30,7 +30,10 @@ state_dict_new = {x.replace('lora_A', 'lora_A.default').replace('lora_B', 'lora_
 model.transformer.load_state_dict(state_dict_new, strict=False)
 pipe = model.flux_pipe
 
-prompt = "lepto college of education, the written materials on the picture: LESOTHO , COLLEGE OF , RE BONA LESELI LESEL , EDUCATION ."
+# prompt = "lepto college of education, the written materials on the picture: LESOTHO , COLLEGE OF , RE BONA LESELI LESEL , EDUCATION ."
+
+prompt = "lepto college of education, the written materials on the picture: 你好 , 万古长青 , 无限薯片 , 大难不死 ."
+
 hint = Image.open("assets/hint.png").resize((512, 512)).convert('RGB')
 img = Image.open("assets/hint_imgs.jpg").resize((512, 512))
 condition_img = Image.open("assets/hint_imgs_word.png").resize((512, 512)).convert('RGB')
@@ -55,4 +58,4 @@ res = generate_fill(
     model_config=config.get("model", {}),
     default_lora=True,
 )
-res.images[0].save('flux_fill.png')
+res.images[0].save('flux_fill2.png')

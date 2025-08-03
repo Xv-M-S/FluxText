@@ -6,8 +6,6 @@ huggingface-cli download GD-ML/FLUX-Text --local-dir FLUX-Text --repo-type model
 
 # download env from github
 
-## download clip
-
 ```bash
 # Create a new conda environment
 conda create -n flux_text python=3.10
@@ -24,8 +22,8 @@ pip install flash_attn --no-build-isolation
 pip install Pillow==9.5.0
 ```
 
-## download others
+# use
 
 ```bash
-pip install -r new_requirements.txt
+python app.py --model_path ./FLUX-Text/model_multisize/pytorch_lora_weights.safetensors --config_path ./train/config/word_multi_size.yaml
 ```
