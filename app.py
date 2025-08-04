@@ -124,8 +124,15 @@ def init_pipeline(args, config):
     return pipe, trainable_model
 
 def get_captions(ori_image, _input_file):
+    print(ori_image.shape)
+    print("Generating caption for:", _input_file)
     image = Image.fromarray(ori_image)
-    inputs = processor(image, return_tensors="pt").to(device, torch.float16)
+    print("Image mode:", image.mode)
+    print("Image size:", image.size)
+    inputs = processor(image, _input_file, return_tensors="pt").to(device, torch.float16)
+    print("Input keys:", inputs.keys())
+    if 'pixel_values' in inputs:
+        print("pixel_values shape:", inputs['pixel_values'].shape)
 
     generated_ids = blipmodel.generate(**inputs, max_new_tokens=20)
     generated_text = processor.batch_decode(generated_ids, skip_special_tokens=True)[0].strip()
@@ -149,6 +156,8 @@ def brush_button_func(brush_image):
 
 def update_mask_func(edit_mask, edit_text):
     background = edit_mask['background']
+    print(edit_mask.keys())
+    print(background.shape)
     background = background[:, :, :3]
     mask, _ = brush_button_func(edit_mask)
 

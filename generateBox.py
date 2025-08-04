@@ -14,15 +14,29 @@ MAX_FONT_SIZE = 60
 TEXT_CONTENTS = ["Hello", "World", "Python", "AI", "Clip", "Stable", "Diffusion", "Text"]
 OUTPUT_DIR = "output"
 MASK_IMAGE_NAME = "mask.png"
+IMAGE_PATH = "/home/sxm/flux-workspace/FluxText/assets/hint_imgs.jpg"
 
 # -------------------------------
 # 创建输出目录
 # -------------------------------
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
+
+from PIL import Image
+
+def get_image_size(image_path):
+    """
+    获取指定路径下图片的尺寸（宽度, 高度）。
+    
+    :param image_path: 图片文件的路径。
+    :return: 一个包含图片宽度和高度的元组 (width, height)。
+    """
+    with Image.open(image_path) as img:
+        return img.size  # 返回的是 (宽度, 高度)
+    
 def random_gray():
     """生成随机灰度值作为背景"""
-    return 0
+    return 255
 
 def random_text_color(bg_gray):
     """根据背景亮度选择黑或白文字"""
@@ -214,4 +228,6 @@ def main():
     # image.show()
 
 if __name__ == "__main__":
+    if len(IMAGE_PATH) == 0:
+        IMAGE_SIZE = get_image_size(IMAGE_PATH)
     main()
