@@ -30,13 +30,11 @@ state_dict_new = {x.replace('lora_A', 'lora_A.default').replace('lora_B', 'lora_
 model.transformer.load_state_dict(state_dict_new, strict=False)
 pipe = model.flux_pipe
 
-# prompt = "lepto college of education, the written materials on the picture: LESOTHO , COLLEGE OF , RE BONA LESELI LESEL , EDUCATION ."
+prompt = "lepto college of education, the written materials on the picture: LESOTHO , COLLEGE OF , RE BONA LESELI LESEL , EDUCATION ."
 
-prompt = "lepto college of education, the written materials on the picture."
-
-hint = Image.open("/home/sxm/flux-workspace/FluxText/output/mask.png").resize((512, 512)).convert('RGB')
+hint = Image.open("assets/hint.png").resize((512, 512)).convert('RGB')
 img = Image.open("assets/hint_imgs.jpg").resize((512, 512))
-condition_img = Image.open("/home/sxm/flux-workspace/FluxText/output/grayscale_with_text.png").resize((512, 512)).convert('RGB')
+condition_img = Image.open("assets/hint_imgs_word.png").resize((512, 512)).convert('RGB')
 hint = np.array(hint) / 255
 condition_img = np.array(condition_img)
 condition_img = (255 - condition_img) / 255

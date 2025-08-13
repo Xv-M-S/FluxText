@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: 调试 idea2/train-generation-pure-text 训练 base on lora model",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "/home/sxm/flux-workspace/FluxText/quickStart.py",
+            "console": "integratedTerminal",
+            "cwd": "/home/sxm/flux-workspace/FluxText",
+            "python": "/home/sxm/anaconda3/envs/flux_text/bin/python3"
+        }
+    ]
+}
+        
